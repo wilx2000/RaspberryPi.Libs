@@ -89,6 +89,9 @@ namespace RaspberryPi.PiGPIO
             this.m_bw = new BinaryWriter(this.m_ns, Encoding.UTF8, true);
         }
 
+        ///<summary>
+        ///pigpiod socket interface: http://abyz.me.uk/rpi/pigpio/sif.html
+        ///</summary>
         internal void RunCommand(Commands command, uint p1, uint p2, int p3, byte[] extension, out int res)
         {
             this.m_cmdlock.Wait();

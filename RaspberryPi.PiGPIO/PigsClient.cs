@@ -11,6 +11,7 @@ using System.Threading.Tasks.Dataflow;
 
 namespace RaspberryPi.PiGPIO
 {
+    public enum BB_SERIAL_DATA_LOGIC : int {INVERTED = 1, NORMAL = 0}
     /// <summary>
     /// PiGpio socket client
     /// </summary>
@@ -278,8 +279,25 @@ namespace RaspberryPi.PiGPIO
             return res;
         }
 
+        /// <summary>
+        /// http://abyz.me.uk/rpi/pigpio/pigs.html#PFS
+        /// </summary>
+        /// <param name="gpio"></param>
+        /// <param name="frequency"></param>
+        /// <returns></returns>
+        public int PFS(int gpio, int frequency)
+        {
+            Commands cmd = Commands.PFS;
+            uint p1 = (uint)gpio;
+            uint p2 = (uint)frequency;
+            int p3 = 0;
+            byte[] extension = new byte[0];
+            int res;
+            this.m_control.RunCommand(cmd, p1, p2, p3, extension, out res);
+            return res;
+        }
+
         //TODO PRS
-        //TODO PFS
         //TODO SERVO
         //TODO WDOG
 
@@ -1007,5 +1025,83 @@ namespace RaspberryPi.PiGPIO
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Open GPIO for bit bang serial data
+        /// </summary>
+        /// <param name="gpio"></param>
+        /// <param name="baud"> baud rate may be between 50 and 250000 bits per second</param>
+        /// <param name="databits"></param>
+        /// <returns></returns>
+        public int SLRO(int gpio, int baud, int databits)
+        {
+            byte[] data = BitConverter.GetBytes(databits);
+
+            Commands cmd = Commands.SLRO;
+            uint p1 = (uint)gpio;
+            uint p2 = (uint)baud;
+            int p3 = data.Length;
+            int res;
+            this.m_control.RunCommand(cmd, p1, p2, p3, data, out res);
+            return res;
+        }
+
+        /// <summary>
+        /// Close GPIO for bit bang serial data
+        /// </summary>
+        /// <param name="gpio"></param>
+        public void SLRC(int gpio)
+        {
+            Commands cmd = Commands.SLRC;
+            uint p1 = (uint)gpio;
+            uint p2 = 0;
+            int p3 = 0;
+            int res;
+            this.m_control.RunCommand(cmd, p1, p2, p3, null, out res);
+            if (res < 0)
+                throw new PiGPIOException(res);
+        }
+
+        /// <summary>
+        /// Sets bit bang serial data logic levels
+        /// </summary>
+        /// <param name="gpio"></param>
+        /// <param name="bb_serial_data_logic">1 for inverted signal, 0 for normal</param>
+        public void SLRI(int gpio, int bb_serial_data_logic)
+        {
+            Commands cmd = Commands.SLRI;
+            uint p1 = (uint)gpio;
+            uint p2 = (uint)bb_serial_data_logic;
+            int p3 = 0;
+            int res;
+            this.m_control.RunCommand(cmd, p1, p2, p3, null, out res);
+        }
+
+        /// <summary>
+        /// Bit-bang serial read bytes
+        /// http://abyz.co.uk/rpi/pigpio/pigs.html#SLR
+        /// </summary>
+        /// <param name="gpio"></param>
+        /// <param name="count">Number of bytes to read</param>
+        /// <param name="bytes">Bytes read</param>
+        /// <returns>
+        /// Number of bytes read
+        /// </returns>
+        public int SLR(int gpio, int count, out byte[] bytes)
+        {
+            Commands cmd = Commands.SLR;
+            uint p1 = (uint)gpio;
+            uint p2 = (uint)count;
+            int p3 = 0;
+            byte[] extension = null;
+
+            int res;
+            byte[] resExtension;
+
+            this.m_control.RunCommand(cmd, p1, p2, p3, extension, out res, out resExtension);
+            bytes = resExtension;
+            return res;
+        }
+
     }
 }

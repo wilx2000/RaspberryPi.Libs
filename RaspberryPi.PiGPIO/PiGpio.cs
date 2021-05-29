@@ -337,7 +337,7 @@ namespace RaspberryPi.PiGPIO
         byte[] IPiGPIO.BSpiXfer(int gpioCS, byte[] txBuffer)
         {
             byte[] rxBuffer = new byte[txBuffer.Length];
-            GCHandle tx = GCHandle.Alloc(tx, GCHandleType.Pinned);
+            GCHandle tx = GCHandle.Alloc(txBuffer, GCHandleType.Pinned);
             try
             {
                 GCHandle rx = GCHandle.Alloc(rxBuffer, GCHandleType.Pinned);

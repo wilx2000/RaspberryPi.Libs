@@ -4,6 +4,9 @@ using System.Text;
 
 namespace RaspberryPi.PiGPIO
 {
+    ///<summary>
+    ///pigpiod socket interface: http://abyz.me.uk/rpi/pigpio/sif.html
+    ///</summary>
     internal enum Commands : uint
     {
         MODES = 0,
