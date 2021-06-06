@@ -307,5 +307,578 @@ namespace RaspberryPi.PiGPIO
                     return $"Unknown error code : {error}";
             }
         }
+        /// <summary>
+        /// GPIO initialise failed
+        /// </summary>
+        public const int PI_INIT_FAILED = -1; // PI_INIT_FAILED
+        /// <summary>
+        /// GPIO not 0-31
+        /// </summary>
+        public const int PI_BAD_USER_GPIO = -2; // PI_BAD_USER_GPIO
+        /// <summary>
+        /// GPIO not 0-53
+        /// </summary>
+        public const int PI_BAD_GPIO = -3; // PI_BAD_GPIO
+        /// <summary>
+        /// Mode not 0-7
+        /// </summary>
+        public const int PI_BAD_MODE = -4; // PI_BAD_MODE
+        /// <summary>
+        /// Level not 0-1
+        /// </summary>
+        public const int PI_BAD_LEVEL = -5; // PI_BAD_LEVEL
+        /// <summary>
+        /// pud not 0-2
+        /// </summary>
+        public const int PI_BAD_PUD = -6; // PI_BAD_PUD
+        /// <summary>
+        /// Pulse width not 0 or 500-2500
+        /// </summary>
+        public const int PI_BAD_PULSEWIDTH = -7; // PI_BAD_PULSEWIDTH
+        /// <summary>
+        /// Duty cycle outside set range
+        /// </summary>
+        public const int PI_BAD_DUTYCYCLE = -8; // PI_BAD_DUTYCYCLE
+        /// <summary>
+        /// timer not 0-9
+        /// </summary>
+        public const int PI_BAD_TIMER = -9; // PI_BAD_TIMER
+        /// <summary>
+        /// ms not 10-60000
+        /// </summary>
+        public const int PI_BAD_MS = -10; // PI_BAD_MS
+        /// <summary>
+        /// Time type not 0-1
+        /// </summary>
+        public const int PI_BAD_TIMETYPE = -11; // PI_BAD_TIMETYPE
+        /// <summary>
+        /// seconds < 0
+        /// </summary>
+        public const int PI_BAD_SECONDS = -12; // PI_BAD_SECONDS
+        /// <summary>
+        /// micros not 0-999999
+        /// </summary>
+        public const int PI_BAD_MICROS = -13; // PI_BAD_MICROS
+        /// <summary>
+        /// gpio SetTimerFunc failed
+        /// </summary>
+        public const int PI_TIMER_FAILED = -14; // PI_TIMER_FAILED
+        /// <summary>
+        /// WDOG timeout not 0-60000
+        /// </summary>
+        public const int PI_BAD_WDOG_TIMEOUT = -15; // PI_BAD_WDOG_TIMEOUT
+        /// <summary>
+        /// DEPRECATED
+        /// </summary>
+        public const int PI_NO_ALERT_FUNC = -16; // PI_NO_ALERT_FUNC
+        /// <summary>
+        /// clock peripheral not 0-1
+        /// </summary>
+        public const int PI_BAD_CLK_PERIPH = -17; // PI_BAD_CLK_PERIPH
+        /// <summary>
+        /// DEPRECATED
+        /// </summary>
+        public const int PI_BAD_CLK_SOURCE = -18; // PI_BAD_CLK_SOURCE
+        /// <summary>
+        /// clock micros not 1, 2, 4, 5, 8, or 10
+        /// </summary>
+        public const int PI_BAD_CLK_MICROS = -19; // PI_BAD_CLK_MICROS
+        /// <summary>
+        /// buf millis not 100-10000
+        /// </summary>
+        public const int PI_BAD_BUF_MILLIS = -20; // PI_BAD_BUF_MILLIS
+        /// <summary>
+        /// Duty cycle range not 25-40000
+        /// </summary>
+        public const int PI_BAD_DUTYRANGE = -21; // PI_BAD_DUTYRANGE
+        /// <summary>
+        /// signum not 0-63
+        /// </summary>
+        public const int PI_BAD_SIGNUM = -22; // PI_BAD_SIGNUM
+        /// <summary>
+        /// Can't open pathname
+        /// </summary>
+        public const int PI_BAD_PATHNAME = -23; // PI_BAD_PATHNAME
+        /// <summary>
+        /// No handle available
+        /// </summary>
+        public const int PI_NO_HANDLE = -24; // PI_NO_HANDLE
+        /// <summary>
+        /// Unknown handle
+        /// </summary>
+        public const int PI_BAD_HANDLE = -25; // PI_BAD_HANDLE
+        /// <summary>
+        /// ifFlags > 3
+        /// </summary>
+        public const int PI_BAD_IF_FLAGS = -26; // PI_BAD_IF_FLAGS
+        /// <summary>
+        /// DMA primary channel not 0-14
+        /// </summary>
+        public const int PI_BAD_PRIM_CHANNEL = -27; // PI_BAD_PRIM_CHANNEL
+        /// <summary>
+        /// Socket port not 1024-32000
+        /// </summary>
+        public const int PI_BAD_SOCKET_PORT = -28; // PI_BAD_SOCKET_PORT
+        /// <summary>
+        /// Unrecognized fifo command
+        /// </summary>
+        public const int PI_BAD_FIFO_COMMAND = -29; // PI_BAD_FIFO_COMMAND
+        /// <summary>
+        /// DMA secondary channel not 0-6
+        /// </summary>
+        public const int PI_BAD_SECO_CHANNEL = -30; // PI_BAD_SECO_CHANNEL
+        /// <summary>
+        /// Function called before gpio initialise
+        /// </summary>
+        public const int PI_NOT_INITIALISED = -31; // PI_NOT_INITIALISED
+        /// <summary>
+        /// function called after gpio initialise
+        /// </summary>
+        public const int PI_INITIALISED = -32; // PI_INITIALISED
+        /// <summary>
+        /// Waveform mode not 0-3
+        /// </summary>
+        public const int PI_BAD_WAVE_MODE = -33; // PI_BAD_WAVE_MODE
+        /// <summary>
+        /// Bad parameter in gpioCfgInternals call
+        /// </summary>
+        public const int PI_BAD_CFG_INTERNAL = -34; // PI_BAD_CFG_INTERNAL
+        /// <summary>
+        /// Baud rate not 50-250K(RX)/50-1M(TX)
+        /// </summary>
+        public const int PI_BAD_WAVE_BAUD = -35; // PI_BAD_WAVE_BAUD
+        /// <summary>
+        /// Waveform has too many pulses
+        /// </summary>
+        public const int PI_TOO_MANY_PULSES = -36; // PI_TOO_MANY_PULSES
+        /// <summary>
+        /// Waveform has too many chars
+        /// </summary>
+        public const int PI_TOO_MANY_CHARS = -37; // PI_TOO_MANY_CHARS
+        /// <summary>
+        /// No bit bang serial read on GPIO
+        /// </summary>
+        public const int PI_NOT_SERIAL_GPIO = -38; // PI_NOT_SERIAL_GPIO
+        /// <summary>
+        /// Bad (null) serial structure parameter
+        /// </summary>
+        public const int PI_BAD_SERIAL_STRUC = -39; // PI_BAD_SERIAL_STRUC
+        /// <summary>
+        /// Bad (null) serial buf parameter
+        /// </summary>
+        public const int PI_BAD_SERIAL_BUF = -40; // PI_BAD_SERIAL_BUF
+        /// <summary>
+        /// GPIO operation not permitted
+        /// </summary>
+        public const int PI_NOT_PERMITTED = -41; // PI_NOT_PERMITTED
+        /// <summary>
+        /// One or more GPIO not permitted
+        /// </summary>
+        public const int PI_SOME_PERMITTED = -42; // PI_SOME_PERMITTED
+        /// <summary>
+        /// Bad WVSC subcommand
+        /// </summary>
+        public const int PI_BAD_WVSC_COMMND = -43; // PI_BAD_WVSC_COMMND
+        /// <summary>
+        /// Bad WVSM subcommand
+        /// </summary>
+        public const int PI_BAD_WVSM_COMMND = -44; // PI_BAD_WVSM_COMMND
+        /// <summary>
+        /// Bad WVSP subcommand
+        /// </summary>
+        public const int PI_BAD_WVSP_COMMND = -45; // PI_BAD_WVSP_COMMND
+        /// <summary>
+        /// Trigger pulse length not 1-100
+        /// </summary>
+        public const int PI_BAD_PULSELEN = -46; // PI_BAD_PULSELEN
+        /// <summary>
+        /// Invalid script
+        /// </summary>
+        public const int PI_BAD_SCRIPT = -47; // PI_BAD_SCRIPT
+        /// <summary>
+        /// Unknown script id
+        /// </summary>
+        public const int PI_BAD_SCRIPT_ID = -48; // PI_BAD_SCRIPT_ID
+        /// <summary>
+        /// Add serial data offset > 30 minutes
+        /// </summary>
+        public const int PI_BAD_SER_OFFSET = -49; // PI_BAD_SER_OFFSET
+        /// <summary>
+        /// GPIO already in use
+        /// </summary>
+        public const int PI_GPIO_IN_USE = -50; // PI_GPIO_IN_USE
+        /// <summary>
+        /// Must read at least a byte at a time
+        /// </summary>
+        public const int PI_BAD_SERIAL_COUNT = -51; // PI_BAD_SERIAL_COUNT
+        /// <summary>
+        /// Script parameter id not 0-9
+        /// </summary>
+        public const int PI_BAD_PARAM_NUM = -52; // PI_BAD_PARAM_NUM
+        /// <summary>
+        /// Script has duplicate tag
+        /// </summary>
+        public const int PI_DUP_TAG = -53; // PI_DUP_TAG
+        /// <summary>
+        /// Script has too many tags
+        /// </summary>
+        public const int PI_TOO_MANY_TAGS = -54; // PI_TOO_MANY_TAGS
+        /// <summary>
+        /// Illegal script command
+        /// </summary>
+        public const int PI_BAD_SCRIPT_CMD = -55; // PI_BAD_SCRIPT_CMD
+        /// <summary>
+        /// Script variable id not 0-149
+        /// </summary>
+        public const int PI_BAD_VAR_NUM = -56; // PI_BAD_VAR_NUM
+        /// <summary>
+        /// No more room for scripts
+        /// </summary>
+        public const int PI_NO_SCRIPT_ROOM = -57; // PI_NO_SCRIPT_ROOM
+        /// <summary>
+        /// Can't allocate temporary memory
+        /// </summary>
+        public const int PI_NO_MEMORY = -58; // PI_NO_MEMORY
+        /// <summary>
+        /// Socket read failed
+        /// </summary>
+        public const int PI_SOCK_READ_FAILED = -59; // PI_SOCK_READ_FAILED
+        /// <summary>
+        /// Socket write failed
+        /// </summary>
+        public const int PI_SOCK_WRIT_FAILED = -60; // PI_SOCK_WRIT_FAILED
+        /// <summary>
+        /// Too many script parameters (> 10)
+        /// </summary>
+        public const int PI_TOO_MANY_PARAM = -61; // PI_TOO_MANY_PARAM
+        /// <summary>
+        /// Script initialising (not ready)
+        /// </summary>
+        public const int PI_SCRIPT_NOT_READY = -62; // PI_SCRIPT_NOT_READY
+        /// <summary>
+        /// Script has unresolved tag
+        /// </summary>
+        public const int PI_BAD_TAG = -63; // PI_BAD_TAG
+        /// <summary>
+        /// Bad MICS delay (too large)
+        /// </summary>
+        public const int PI_BAD_MICS_DELAY = -64; // PI_BAD_MICS_DELAY
+        /// <summary>
+        /// Bad MILS delay (too large)
+        /// </summary>
+        public const int PI_BAD_MILS_DELAY = -65; // PI_BAD_MILS_DELAY
+        /// <summary>
+        /// Non-existent wave id
+        /// </summary>
+        public const int PI_BAD_WAVE_ID = -66; // PI_BAD_WAVE_ID
+        /// <summary>
+        /// No more CBs for waveform
+        /// </summary>
+        public const int PI_TOO_MANY_CBS = -67; // PI_TOO_MANY_CBS
+        /// <summary>
+        /// No more OOL for waveform
+        /// </summary>
+        public const int PI_TOO_MANY_OOL = -68; // PI_TOO_MANY_OOL
+        /// <summary>
+        /// Attempt to create an empty waveform
+        /// </summary>
+        public const int PI_EMPTY_WAVEFORM = -69; // PI_EMPTY_WAVEFORM
+        /// <summary>
+        /// No more waveforms
+        /// </summary>
+        public const int PI_NO_WAVEFORM_ID = -70; // PI_NO_WAVEFORM_ID
+        /// <summary>
+        /// Can't open I2C device
+        /// </summary>
+        public const int PI_I2C_OPEN_FAILED = -71; // PI_I2C_OPEN_FAILED
+        /// <summary>
+        /// Can't open serial device
+        /// </summary>
+        public const int PI_SER_OPEN_FAILED = -72; // PI_SER_OPEN_FAILED
+        /// <summary>
+        /// Can't open SPI device
+        /// </summary>
+        public const int PI_SPI_OPEN_FAILED = -73; // PI_SPI_OPEN_FAILED
+        /// <summary>
+        /// Bad I2C bus
+        /// </summary>
+        public const int PI_BAD_I2C_BUS = -74; // PI_BAD_I2C_BUS
+        /// <summary>
+        /// Bad I2C address
+        /// </summary>
+        public const int PI_BAD_I2C_ADDR = -75; // PI_BAD_I2C_ADDR
+        /// <summary>
+        /// Bad SPI channel
+        /// </summary>
+        public const int PI_BAD_SPI_CHANNEL = -76; // PI_BAD_SPI_CHANNEL
+        /// <summary>
+        /// Bad i2c/spi/ser open flags
+        /// </summary>
+        public const int PI_BAD_FLAGS = -77; // PI_BAD_FLAGS
+        /// <summary>
+        /// Bad SPI speed
+        /// </summary>
+        public const int PI_BAD_SPI_SPEED = -78; // PI_BAD_SPI_SPEED
+        /// <summary>
+        /// Bad serial device name
+        /// </summary>
+        public const int PI_BAD_SER_DEVICE = -79; // PI_BAD_SER_DEVICE
+        /// <summary>
+        /// Bad serial baud rate
+        /// </summary>
+        public const int PI_BAD_SER_SPEED = -80; // PI_BAD_SER_SPEED
+        /// <summary>
+        /// Bad i2c/spi/ser parameter
+        /// </summary>
+        public const int PI_BAD_PARAM = -81; // PI_BAD_PARAM
+        /// <summary>
+        /// i2c write failed
+        /// </summary>
+        public const int PI_I2C_WRITE_FAILED = -82; // PI_I2C_WRITE_FAILED
+        /// <summary>
+        /// i2c read failed
+        /// </summary>
+        public const int PI_I2C_READ_FAILED = -83; // PI_I2C_READ_FAILED
+        /// <summary>
+        /// Bad SPI count
+        /// </summary>
+        public const int PI_BAD_SPI_COUNT = -84; // PI_BAD_SPI_COUNT
+        /// <summary>
+        /// Serial write failed
+        /// </summary>
+        public const int PI_SER_WRITE_FAILED = -85; // PI_SER_WRITE_FAILED
+        /// <summary>
+        /// Serial read failed
+        /// </summary>
+        public const int PI_SER_READ_FAILED = -86; // PI_SER_READ_FAILED
+        /// <summary>
+        /// Serial read no data available
+        /// </summary>
+        public const int PI_SER_READ_NO_DATA = -87; // PI_SER_READ_NO_DATA
+        /// <summary>
+        /// Unknown command
+        /// </summary>
+        public const int PI_UNKNOWN_COMMAND = -88; // PI_UNKNOWN_COMMAND
+        /// <summary>
+        /// spi xfer/read/write failed
+        /// </summary>
+        public const int PI_SPI_XFER_FAILED = -89; // PI_SPI_XFER_FAILED
+        /// <summary>
+        /// Bad (NULL) pointer
+        /// </summary>
+        public const int PI_BAD_POINTER = -90; // PI_BAD_POINTER
+        /// <summary>
+        /// No auxiliary SPI on Pi A or B
+        /// </summary>
+        public const int PI_NO_AUX_SPI = -91; // PI_NO_AUX_SPI
+        /// <summary>
+        /// GPIO is not in use for PWM
+        /// </summary>
+        public const int PI_NOT_PWM_GPIO = -92; // PI_NOT_PWM_GPIO
+        /// <summary>
+        /// GPIO is not in use for servo pulses
+        /// </summary>
+        public const int PI_NOT_SERVO_GPIO = -93; // PI_NOT_SERVO_GPIO
+        /// <summary>
+        /// GPIO has no hardware clock
+        /// </summary>
+        public const int PI_NOT_HCLK_GPIO = -94; // PI_NOT_HCLK_GPIO
+        /// <summary>
+        /// GPIO has no hardware PWM
+        /// </summary>
+        public const int PI_NOT_HPWM_GPIO = -95; // PI_NOT_HPWM_GPIO
+        /// <summary>
+        /// Hardware PWM frequency not 1-125M
+        /// </summary>
+        public const int PI_BAD_HPWM_FREQ = -96; // PI_BAD_HPWM_FREQ
+        /// <summary>
+        /// Hardware PWM dutycycle not 0-1M
+        /// </summary>
+        public const int PI_BAD_HPWM_DUTY = -97; // PI_BAD_HPWM_DUTY
+        /// <summary>
+        /// Hardware clock frequency not 4689-250M
+        /// </summary>
+        public const int PI_BAD_HCLK_FREQ = -98; // PI_BAD_HCLK_FREQ
+        /// <summary>
+        /// Need password to use hardware clock 1
+        /// </summary>
+        public const int PI_BAD_HCLK_PASS = -99; // PI_BAD_HCLK_PASS
+        /// <summary>
+        /// Illegal, PWM in use for main clock
+        /// </summary>
+        public const int PI_HPWM_ILLEGAL = -100; // PI_HPWM_ILLEGAL
+        /// <summary>
+        /// Serial data bits not 1-32
+        /// </summary>
+        public const int PI_BAD_DATABITS = -101; // PI_BAD_DATABITS
+        /// <summary>
+        /// Serial (half) stop bits not 2-8
+        /// </summary>
+        public const int PI_BAD_STOPBITS = -102; // PI_BAD_STOPBITS
+        /// <summary>
+        /// Socket/pipe message too big
+        /// </summary>
+        public const int PI_MSG_TOOBIG = -103; // PI_MSG_TOOBIG
+        /// <summary>
+        /// Bad memory allocation mode
+        /// </summary>
+        public const int PI_BAD_MALLOC_MODE = -104; // PI_BAD_MALLOC_MODE
+        /// <summary>
+        /// Too many I2C transaction segments
+        /// </summary>
+        public const int PI_TOO_MANY_SEGS = -105; // PI_TOO_MANY_SEGS
+        /// <summary>
+        /// An I2C transaction segment failed
+        /// </summary>
+        public const int PI_BAD_I2C_SEG = -106; // PI_BAD_I2C_SEG
+        /// <summary>
+        /// SMBus command not supported by driver
+        /// </summary>
+        public const int PI_BAD_SMBUS_CMD = -107; // PI_BAD_SMBUS_CMD
+        /// <summary>
+        /// No bit bang I2C in progress on GPIO
+        /// </summary>
+        public const int PI_NOT_I2C_GPIO = -108; // PI_NOT_I2C_GPIO
+        /// <summary>
+        /// Bad I2C write length
+        /// </summary>
+        public const int PI_BAD_I2C_WLEN = -109; // PI_BAD_I2C_WLEN
+        /// <summary>
+        /// Bad I2C read length
+        /// </summary>
+        public const int PI_BAD_I2C_RLEN = -110; // PI_BAD_I2C_RLEN
+        /// <summary>
+        /// Bad I2C command
+        /// </summary>
+        public const int PI_BAD_I2C_CMD = -111; // PI_BAD_I2C_CMD
+        /// <summary>
+        /// Bad I2C baud rate, not 50-500k
+        /// </summary>
+        public const int PI_BAD_I2C_BAUD = -112; // PI_BAD_I2C_BAUD
+        /// <summary>
+        /// Bad chain loop count
+        /// </summary>
+        public const int PI_CHAIN_LOOP_CNT = -113; // PI_CHAIN_LOOP_CNT
+        /// <summary>
+        /// Empty chain loop
+        /// </summary>
+        public const int PI_BAD_CHAIN_LOOP = -114; // PI_BAD_CHAIN_LOOP
+        /// <summary>
+        /// Too many chain counters
+        /// </summary>
+        public const int PI_CHAIN_COUNTER = -115; // PI_CHAIN_COUNTER
+        /// <summary>
+        /// Bad chain command
+        /// </summary>
+        public const int PI_BAD_CHAIN_CMD = -116; // PI_BAD_CHAIN_CMD
+        /// <summary>
+        /// Bad chain delay micros
+        /// </summary>
+        public const int PI_BAD_CHAIN_DELAY = -117; // PI_BAD_CHAIN_DELAY
+        /// <summary>
+        /// Chain counters nested too deeply
+        /// </summary>
+        public const int PI_CHAIN_NESTING = -118; // PI_CHAIN_NESTING
+        /// <summary>
+        /// Chain is too long
+        /// </summary>
+        public const int PI_CHAIN_TOO_BIG = -119; // PI_CHAIN_TOO_BIG
+        /// <summary>
+        /// Deprecated function removed
+        /// </summary>
+        public const int PI_DEPRECATED = -120; // PI_DEPRECATED
+        /// <summary>
+        /// Bit bang serial invert not 0 or 1
+        /// </summary>
+        public const int PI_BAD_SER_INVERT = -121; // PI_BAD_SER_INVERT
+        /// <summary>
+        /// Bad ISR edge value, not 0-2
+        /// </summary>
+        public const int PI_BAD_EDGE = -122; // PI_BAD_EDGE
+        /// <summary>
+        /// Bad ISR initialisation
+        /// </summary>
+        public const int PI_BAD_ISR_INIT = -123; // PI_BAD_ISR_INIT
+        /// <summary>
+        /// Loop forever must be last command
+        /// </summary>
+        public const int PI_BAD_FOREVER = -124; // PI_BAD_FOREVER
+        /// <summary>
+        /// bad filter parameter
+        /// </summary>
+        public const int PI_BAD_FILTER = -125; // PI_BAD_FILTER
+        /// <summary>
+        /// Bad pad number
+        /// </summary>
+        public const int PI_BAD_PAD = -126; // PI_BAD_PAD
+        /// <summary>
+        /// Bad pad drive strength
+        /// </summary>
+        public const int PI_BAD_STRENGTH = -127; // PI_BAD_STRENGTH
+        /// <summary>
+        /// File open failed
+        /// </summary>
+        public const int PI_FIL_OPEN_FAILED = -128; // PI_FIL_OPEN_FAILED
+        /// <summary>
+        /// Bad file mode
+        /// </summary>
+        public const int PI_BAD_FILE_MODE = -129; // PI_BAD_FILE_MODE
+        /// <summary>
+        /// Bad file flag
+        /// </summary>
+        public const int PI_BAD_FILE_FLAG = -130; // PI_BAD_FILE_FLAG
+        /// <summary>
+        /// bad file read
+        /// </summary>
+        public const int PI_BAD_FILE_READ = -131; // PI_BAD_FILE_READ
+        /// <summary>
+        /// Bad file write
+        /// </summary>
+        public const int PI_BAD_FILE_WRITE = -132; // PI_BAD_FILE_WRITE
+        /// <summary>
+        /// File not open for read
+        /// </summary>
+        public const int PI_FILE_NOT_ROPEN = -133; // PI_FILE_NOT_ROPEN
+        /// <summary>
+        /// File not open for write
+        /// </summary>
+        public const int PI_FILE_NOT_WOPEN = -134; // PI_FILE_NOT_WOPEN
+        /// <summary>
+        /// Bad file seek
+        /// </summary>
+        public const int PI_BAD_FILE_SEEK = -135; // PI_BAD_FILE_SEEK
+        /// <summary>
+        /// No files match pattern
+        /// </summary>
+        public const int PI_NO_FILE_MATCH = -136; // PI_NO_FILE_MATCH
+        /// <summary>
+        /// No permission to access file
+        /// </summary>
+        public const int PI_NO_FILE_ACCESS = -137; // PI_NO_FILE_ACCESS
+        /// <summary>
+        /// File is a directory
+        /// </summary>
+        public const int PI_FILE_IS_A_DIR = -138; // PI_FILE_IS_A_DIR
+        /// <summary>
+        /// Bad shell return status
+        /// </summary>
+        public const int PI_BAD_SHELL_STATUS = -139; // PI_BAD_SHELL_STATUS
+        /// <summary>
+        /// Bad script name
+        /// </summary>
+        public const int PI_BAD_SCRIPT_NAME = -140; // PI_BAD_SCRIPT_NAME
+        /// <summary>
+        /// Bad SPI baud rate, not 50-500k
+        /// </summary>
+        public const int PI_BAD_SPI_BAUD = -141; // PI_BAD_SPI_BAUD
+        /// <summary>
+        /// No bit bang SPI in progress on GPIO
+        /// </summary>
+        public const int PI_NOT_SPI_GPIO = -142; // PI_NOT_SPI_GPIO
+        /// <summary>
+        /// Bad event id
+        /// </summary>
+        public const int PI_BAD_EVENT_ID = -143; // PI_BAD_EVENT_ID
+
     }
 }
